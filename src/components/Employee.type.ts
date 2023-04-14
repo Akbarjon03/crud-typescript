@@ -13,3 +13,8 @@ export const dummyEmplopeeList: IEmplopee[] = [
     email: "Dummy1@gmail.com",
   }
 ]
+
+export enum PageEnum {
+  list,
+  add,
+}

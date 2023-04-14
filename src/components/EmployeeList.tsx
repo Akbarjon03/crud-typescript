@@ -21,11 +21,15 @@ const EmployeeList = (props: Props) => {
               <td>{`${employee.firstName} ${employee.lastName}`}</td>
               <td>{employee.email}</td>
               <td>
-                Actions
+                <div>
+                  <input type="button" value="View"/>
+                  <input type="button" value="Edit"/>
+                  <input type="button" value="Delete"/>
+                </div>
               </td>
             </tr>
           );
-        })};
+        })}
       </table>
     </div>
   )

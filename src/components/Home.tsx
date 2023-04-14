@@ -2,10 +2,20 @@ import React from 'react';
 import  "./Home.style.css";
 import { useState } from "react";
 import EmployeeList from "./EmployeeList";
-import { IEmplopee, dummyEmplopeeList } from './Employee.type';
+import { IEmplopee, PageEnum, dummyEmplopeeList } from './Employee.type';
+import AddEmployee from './AddEmployee';
 
 function Home() {
-  const [employeeList, setEmployeeList] = useState(dummyEmplopeeList as IEmplopee[])
+  const [employeeList, setEmployeeList] = useState(
+    dummyEmplopeeList as IEmplopee[]
+  );
+  const [shownPage, setShownPage] = useState(PageEnum.list);
+  const onAddEmployeeClickHnd = () => {
+    setShownPage(PageEnum.add);
+  }
+  const showListPage = () => {
+    setShownPage(PageEnum.list)
+  }
 
   return (
     <>
@@ -16,7 +26,13 @@ function Home() {
       </article>
 
       <section className="section-content">
-        <EmployeeList list={employeeList}/>
+        {shownPage === PageEnum.list && (
+          <>
+            <input type="button" value="Add Employee" onClick={onAddEmployeeClickHnd}/>
+            <EmployeeList list={employeeList}/>
+          </>
+        )}
+        {shownPage === PageEnum.add && <AddEmployee onBackBtnClickHnd={showListPage}/>}
       </section>
     </>
   )
