@@ -4,3 +4,12 @@ export interface IEmplopee {
   lastName: string;
   email: string;
 }
+
+export const dummyEmplopeeList: IEmplopee[] = [
+  {
+    id: new Date().toJSON().toString(),
+    firstName: "Dummy1",
+    lastName: "Dummy11",
+    email: "Dummy1@gmail.com",
+  }
+]

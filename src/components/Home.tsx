@@ -1,10 +1,11 @@
 import React from 'react';
 import  "./Home.style.css";
 import { useState } from "react";
-import { IEmplopee } from './Employee.type';
+import EmployeeList from "./EmployeeList";
+import { IEmplopee, dummyEmplopeeList } from './Employee.type';
 
 function Home() {
-  const [employeeList, setEmployeeList] = useState([] as IEmplopee[])
+  const [employeeList, setEmployeeList] = useState(dummyEmplopeeList as IEmplopee[])
 
   return (
     <>
@@ -15,7 +16,7 @@ function Home() {
       </article>
 
       <section className="section-content">
-        <div>This is content part</div>
+        <EmployeeList list={employeeList}/>
       </section>
     </>
   )
