@@ -28,6 +28,7 @@ const AddEmployee = (props: Props) => {
       email: email,
     }
     onSubmitClickHnd(data);
+    onBackBtnClickHnd();
   }
 
   return (

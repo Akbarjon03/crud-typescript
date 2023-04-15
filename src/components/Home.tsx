@@ -1,5 +1,4 @@
 import React from 'react';
-import  "./Home.style.css";
 import { useState } from "react";
 import EmployeeList from "./EmployeeList";
 import { IEmplopee, PageEnum, dummyEmplopeeList } from './Employee.type';
@@ -21,16 +20,16 @@ function Home() {
   }
   return (
     <>
-      <article className="article-header">
+      <article className="text-center navbar navbar-expand-lg bg-info justify-content-center">
         <header>
-          <h1>C.R.U.D in Typescript</h1>
+          <h3>CRUD in Typescript</h3>
         </header>
       </article>
 
-      <section className="section-content">
+      <section className="">
         {shownPage === PageEnum.list && (
           <>
-            <input type="button" value="Add Employee" onClick={onAddEmployeeClickHnd}/>
+            <input type="button" value="Add Employee" className="btn btn-info m-2" onClick={onAddEmployeeClickHnd}/>
             <EmployeeList list={employeeList}/>
           </>
         )}
