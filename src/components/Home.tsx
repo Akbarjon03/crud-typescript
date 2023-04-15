@@ -14,9 +14,11 @@ function Home() {
     setShownPage(PageEnum.add);
   }
   const showListPage = () => {
-    setShownPage(PageEnum.list)
+    setShownPage(PageEnum.list);
   }
-
+  const addEmployee = (data: IEmplopee) => {
+    setEmployeeList([...employeeList, data]);
+  }
   return (
     <>
       <article className="article-header">
@@ -32,7 +34,11 @@ function Home() {
             <EmployeeList list={employeeList}/>
           </>
         )}
-        {shownPage === PageEnum.add && <AddEmployee onBackBtnClickHnd={showListPage}/>}
+        {shownPage === PageEnum.add &&
+          (
+            <AddEmployee onBackBtnClickHnd={showListPage} onSubmitClickHnd={addEmployee}/>
+          )
+        }
       </section>
     </>
   )

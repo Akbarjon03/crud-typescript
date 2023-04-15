@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { IEmplopee } from './Employee.type';
 
 type Props = {
-  onBackBtnClickHnd : () => void
-}
+  onBackBtnClickHnd: () => void;
+  onSubmitClickHnd: (data: IEmplopee) => void;
+};
 const AddEmployee = (props: Props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const { onBackBtnClickHnd, onSubmitClickHnd } = props;
   const onFirstNameChangeHnd = (e: any) => {
     setFirstName(e.target.value);
   }
@@ -16,11 +19,20 @@ const AddEmployee = (props: Props) => {
   const onEmailChangeHnd = (e: any) => {
     setEmail(e.target.value);
   }
-  const { onBackBtnClickHnd } = props
+  const onSubmitBtnClickHnd = (e: any) => {
+    e.preventDefault();
+    const data: IEmplopee = {
+      id: new Date().toJSON().toString(),
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+    }
+    onSubmitClickHnd(data);
+  }
 
   return (
     <>
-      <form className="m-5">
+      <form className="m-5" onSubmit={onSubmitBtnClickHnd}>
         <div className="input-group mb-3">
           <input type="text" className="form-control" value={firstName} onChange={onFirstNameChangeHnd} placeholder="First name" aria-describedby="basic-addon1"/>
         </div>
