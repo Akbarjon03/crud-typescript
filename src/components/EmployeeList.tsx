@@ -1,6 +1,7 @@
 import React from 'react';
 import { IEmplopee } from './Employee.type';
 import EmployeeModel from './EmployeeModel';
+import { useState } from 'react';
 
 type Props = {
   list: IEmplopee[]
@@ -8,6 +9,10 @@ type Props = {
 }
 const EmployeeList = (props: Props) => {
   const { list, onDeleteClickHnd } = props;
+  const [showModel, setShowModel] = useState(false);
+  const viewEmployee = () => {
+    setShowModel(true);
+  }
   return (
     <div className="container">
       <table className="table">
@@ -28,7 +33,7 @@ const EmployeeList = (props: Props) => {
                 <td>{employee.email}</td>
                 <td>
                   <div className="btn-group" role="group">
-                    <input type="button" className="btn btn-success" value="View"/>
+                    <input type="button" className="btn btn-success" value="View" onClick={viewEmployee}/>
                     <input type="button" className="btn btn-warning" value="Edit"/>
                     <input type="button" className="btn btn-danger" value="Delete" onClick={() => onDeleteClickHnd(employee)}/>
                   </div>
@@ -38,7 +43,7 @@ const EmployeeList = (props: Props) => {
           );
         })}
       </table>
-      <EmployeeModel/>
+      {showModel && <EmployeeModel/>}
     </div>
   )
 }
