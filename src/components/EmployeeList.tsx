@@ -1,6 +1,6 @@
 import React from 'react';
 import { IEmplopee } from './Employee.type';
-import EmployeeModel from './EmployeeModel';
+import EmployeeModal from './EmployeeModal';
 import { useState } from 'react';
 
 type Props = {
@@ -43,7 +43,7 @@ const EmployeeList = (props: Props) => {
           );
         })}
       </table>
-      {showModel && <EmployeeModel/>}
+      {showModel && <EmployeeModal/>}
     </div>
   )
 }
