@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { IEmplopee } from "./Employee.type";
+import "./EditEmployee.style.css";
 
 type Props = {
+  data: IEmplopee;
   onBackBtnClickHnd: () => void;
-  onSubmitClickHnd: (data: IEmplopee) => void;
+  onUpdateClickHnd: (data: IEmplopee) => void;
 };
-const AddEmployee = (props: Props) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const { onBackBtnClickHnd, onSubmitClickHnd } = props;
+
+const EditEmployee = (props: Props) => {
+  const { data, onBackBtnClickHnd, onUpdateClickHnd} = props;
+  const [firstName, setFirstName] = useState(data.firstName);
+  const [lastName, setLastName] = useState(data.lastName);
+  const [email, setEmail] = useState(data.email);
   const onFirstNameChangeHnd = (e: any) => {
     setFirstName(e.target.value);
   };
@@ -21,16 +24,15 @@ const AddEmployee = (props: Props) => {
   };
   const onSubmitBtnClickHnd = (e: any) => {
     e.preventDefault();
-    const data: IEmplopee = {
-      id: new Date().toJSON().toString(),
+    const updatedData: IEmplopee = {
+      id: data.id,
       firstName: firstName,
       lastName: lastName,
       email: email,
     };
-    onSubmitClickHnd(data);
+    onUpdateClickHnd(updatedData);
     onBackBtnClickHnd();
   };
-
   return (
     <>
       <form className="m-5" onSubmit={onSubmitBtnClickHnd}>
@@ -74,7 +76,7 @@ const AddEmployee = (props: Props) => {
           <input
             type="submit"
             className="btn btn-success"
-            value="Add employee"
+            value="Update employee"
           />
         </div>
       </form>
@@ -82,4 +84,4 @@ const AddEmployee = (props: Props) => {
   );
 };
 
-export default AddEmployee;
+export default EditEmployee;

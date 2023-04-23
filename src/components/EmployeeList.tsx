@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import { IEmplopee } from './Employee.type';
-import EmployeeModal from './EmployeeModal';
+import React, { useState } from "react";
+import { IEmplopee } from "./Employee.type";
+import EmployeeModal from "./EmployeeModal";
 
 type Props = {
   list: IEmplopee[];
   onDeleteClickHnd: (data: IEmplopee) => void;
+  onEdit: (data: IEmplopee) => void;
 };
 
 const EmployeeList = (props: Props) => {
-  const { list, onDeleteClickHnd } = props;
+  const { list, onDeleteClickHnd, onEdit } = props;
   const [showModel, setShowModel] = useState(false);
-  const [dataToShow, setDataToShow] = useState();
+  const [dataToShow, setDataToShow] = useState(null as IEmplopee | null);
 
-  const viewEmployee = () => {
+  const viewEmployee = (data: IEmplopee) => {
+    setDataToShow(data);
     setShowModel(true);
   };
 
@@ -37,16 +39,33 @@ const EmployeeList = (props: Props) => {
               <td>{employee.email}</td>
               <td>
                 <div className="btn-group" role="group">
-                  <input type="button" className="btn btn-success" value="View" onClick={()=>viewEmployee(employee)}/>
-                  <input type="button" className="btn btn-warning" value="Edit" />
-                  <input type="button" className="btn btn-danger" value="Delete" onClick={() => onDeleteClickHnd(employee)} />
+                  <input
+                    type="button"
+                    className="btn btn-success"
+                    value="View"
+                    onClick={() => viewEmployee(employee)}
+                  />
+                  <input
+                    type="button"
+                    className="btn btn-warning"
+                    value="Edit"
+                    onClick={() => onEdit(employee)}
+                  />
+                  <input
+                    type="button"
+                    className="btn btn-danger"
+                    value="Delete"
+                    onClick={() => onDeleteClickHnd(employee)}
+                  />
                 </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {showModel && <EmployeeModal onClick={onCloseModal} data={}/>}
+      {showModel && dataToShow !== null && (
+        <EmployeeModal onClick={onCloseModal} data={dataToShow} />
+      )}
     </div>
   );
 };

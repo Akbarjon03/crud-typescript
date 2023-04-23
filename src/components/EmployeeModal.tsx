@@ -1,19 +1,20 @@
-import React from 'react';
+import React from "react";
 import "./EmployeeModal.sytle.css";
-import { IEmplopee } from './Employee.type';
+import { IEmplopee } from "./Employee.type";
 
 type Props = {
   onClick: () => void;
-  data: IEmplopee
+  data: IEmplopee;
 };
 
-const EmployeeModal = (props: Props) => {
-  const { onClick } = props;
-
+const EmployeeModal = ({ onClick, data }: Props) => {
+  // Added data to the destructured props
   return (
-    <div id='myModal' className='modal'>
-      <div className='modal-content'>
-        <span className='close' onClick={onClick}>&times;</span>
+    <div id="myModal" className="modal">
+      <div className="modal-content">
+        <span className="close" onClick={onClick}>
+          &times;
+        </span>
         <div>
           <h3> Employee data</h3>
           <div>
@@ -28,7 +29,7 @@ const EmployeeModal = (props: Props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default EmployeeModal;

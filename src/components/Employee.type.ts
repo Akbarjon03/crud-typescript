@@ -17,4 +17,5 @@ export const dummyEmplopeeList: IEmplopee[] = [
 export enum PageEnum {
   list,
   add,
+  edit,
 }
