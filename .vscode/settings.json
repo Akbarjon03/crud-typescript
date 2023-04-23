@@ -1,3 +1,4 @@
 {
-  "audioCues.lineHasError": "off"
+  "audioCues.lineHasError": "off",
+  "vue.features.codeActions.enable": false
 }
